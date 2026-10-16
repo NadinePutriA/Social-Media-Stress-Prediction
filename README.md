@@ -30,6 +30,7 @@ Informasi dataset:
 Dataset digunakan sebagai data eksperimen untuk membangun model klasifikasi.
 
 **Metodologi**
+
 Tahapan pengerjaan proyek meliputi:
 1. Pembersihan Data
 Memeriksa dan mempersiapkan data sebelum analisis dan pemodelan.
