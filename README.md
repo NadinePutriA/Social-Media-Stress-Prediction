@@ -1,56 +1,96 @@
 # Social-Media-Stress-Prediction
 Prediksi stres pada pengguna media sosial menggunakan Logistic Regression dan Random Forest berdasarkan fitur linguistik dan sosial dengan Python.
 
-**Prediksi Stres pada Pengguna Media Sosial**
 
-Proyek Kecerdasan Artifisial untuk memprediksi stres pada pengguna media sosial berdasarkan fitur linguistik dan sosial menggunakan algoritma Logistic Regression dan Random Forest.
+# Prediksi Stres pada Pengguna Media Sosial
 
-**Deskripsi Proyek**
+## Deskripsi Proyek
 
-Media sosial menjadi salah satu sarana bagi pengguna untuk mengekspresikan pikiran, perasaan, dan pengalaman sehari-hari. Melalui proyek ini, dilakukan analisis data dan penerapan machine learning untuk mempelajari pola yang berkaitan dengan stres berdasarkan data unggahan pengguna Reddit.
+Proyek ini membahas penerapan Artificial Intelligence (AI) menggunakan algoritma machine learning untuk memprediksi tingkat stres pengguna media sosial berdasarkan fitur linguistik dan sosial. Proyek ini disusun sebagai tugas akhir mata kuliah Artificial Intelligence pada Program Studi S1 Sains Data, Universitas Negeri Surabaya.
 
-Beberapa model klasifikasi dibangun dan dibandingkan untuk mengetahui model yang memberikan hasil prediksi terbaik berdasarkan metrik evaluasi yang digunakan.
+Penelitian menggunakan dataset *Stress Analysis* dari Kaggle yang berisi fitur numerik hasil ekstraksi karakteristik bahasa dan aktivitas sosial pengguna Reddit. Model yang digunakan adalah Logistic Regression dan Random Forest untuk mengklasifikasikan pengguna ke dalam dua kategori, yaitu stres dan tidak stres.
 
-**Tujuan**
-1. Melakukan eksplorasi dan analisis terhadap dataset.
-2. Melakukan pembersihan dan persiapan data sebelum pemodelan.
-3. Mengidentifikasi fitur yang relevan menggunakan feature importance.
-4. Membangun model klasifikasi menggunakan Logistic Regression dan Random Forest.
-5. Membandingkan kinerja model berdasarkan hasil evaluasi.
+Selain membandingkan performa model, penelitian ini juga menganalisis fitur yang berkontribusi terhadap prediksi menggunakan feature importance.
 
-**Dataset**
+## Tujuan
 
-Dataset yang digunakan adalah Stress Analysis dari Kaggle, yang berisi data unggahan Reddit dengan berbagai fitur linguistik dan sosial.
+- Menganalisis hubungan fitur linguistik dengan label tingkat stres.
+- Mengidentifikasi kontribusi fitur sosial dalam prediksi tingkat stres.
+- Membandingkan performa Logistic Regression dengan dan tanpa Robust Scaler serta Random Forest.
+- Mengidentifikasi fitur yang paling berpengaruh berdasarkan feature importance.
 
-Informasi dataset:
-- Jumlah data: 2.838 baris.
-- Jumlah atribut: 111 kolom, termasuk label target.
-- Label 0: Tidak stres.
-- Label 1: Stres.
-Dataset digunakan sebagai data eksperimen untuk membangun model klasifikasi.
+## Dataset
 
-**Metodologi**
+Dataset yang digunakan adalah **Stress Analysis Dataset** dari Kaggle, yang disusun oleh Shuvojit Das dan berasal dari unggahan pengguna Reddit.
 
-Tahapan pengerjaan proyek meliputi:
-1. Pembersihan Data
-Memeriksa dan mempersiapkan data sebelum analisis dan pemodelan.
-2. Analisis Data Eksploratif (EDA)
-Melakukan statistik deskriptif, pemeriksaan pencilan menggunakan metode IQR, analisis distribusi label, dan pemeriksaan korelasi antarfitur.
-3. Seleksi Fitur
-Menggunakan feature importance dari Random Forest untuk memilih 50 fitur teratas.
-4. Pembangunan Model
-Membangun dan membandingkan tiga konfigurasi model:
-- Logistic Regression tanpa scaling.
-- Logistic Regression dengan RobustScaler.
-- Random Forest.
-5. Evaluasi Model
-Menggunakan accuracy, precision, recall, F1-score, dan confusion matrix untuk mengevaluasi hasil klasifikasi.
+Dataset memiliki sekitar 2.838 entri dengan label target:
+- `0`: Tidak stres
+- `1`: Stres
 
-**Catatan**
+Fitur dikelompokkan menjadi:
 
-Proyek ini dibuat untuk keperluan akademik dalam penerapan machine learning pada klasifikasi data media sosial. Hasil prediksi model tidak dimaksudkan sebagai diagnosis atau penilaian pasti terhadap kondisi kesehatan mental seseorang.
+- **Fitur linguistik:** karakteristik emosional, kognitif, dan struktur bahasa, seperti `tone`, `negemo`, `iword`, dan `anxiety`.
+- **Fitur sosial:** karakteristik interaksi pengguna di media sosial, termasuk karma, komentar, dan rasio upvote.
 
-**Konteks Akademik**
+Penelitian menggunakan fitur numerik yang telah tersedia pada dataset, bukan melakukan ekstraksi fitur langsung dari teks mentah.
 
-Mata Kuliah: Kecerdasan Artifisial
-Universitas: Universitas Negeri Surabaya
+## Metodologi
+
+### 1. Data Cleaning
+- Memeriksa missing values dan data duplikat.
+- Menghapus kolom identitas dan atribut yang tidak relevan.
+- Menyesuaikan nama kolom untuk mempermudah analisis.
+
+### 2. Exploratory Data Analysis (EDA)
+- Statistik deskriptif fitur numerik.
+- Analisis distribusi label stres dan tidak stres.
+- Deteksi outlier menggunakan metode Interquartile Range (IQR).
+- Analisis korelasi fitur terhadap label.
+
+### 3. Feature Selection
+Random Forest digunakan untuk menghitung feature importance dan memilih 50 fitur teratas sebagai input pemodelan.
+
+### 4. Preprocessing dan Pemodelan
+Data dibagi menjadi data latih dan data uji menggunakan rasio 80:20 dengan stratifikasi label.
+
+Tiga pendekatan yang dibandingkan:
+1. Logistic Regression tanpa scaling.
+2. Logistic Regression dengan Robust Scaler.
+3. Random Forest Classifier.
+
+Robust Scaler digunakan untuk mengevaluasi pengaruh penskalaan fitur terhadap performa Logistic Regression.
+
+### 5. Evaluasi Model
+Performa model dievaluasi menggunakan:
+- Accuracy
+- Precision
+- Recall
+- F1-score
+- Confusion matrix
+
+Hasil evaluasi digunakan untuk membandingkan kemampuan setiap model dalam mengklasifikasikan pengguna stres dan tidak stres.
+
+## Hasil dan Evaluasi
+
+Berdasarkan hasil pengujian, diperoleh perbandingan performa berikut:
+
+| Model | Accuracy | Precision | Recall | F1-score |
+|---|---:|---:|---:|---:|
+| Logistic Regression (Unscaled) | 77,1% | 77,3% | 77,1% | 77,1% |
+| Logistic Regression (Robust Scaled) | 77,1% | 77,4% | 77,1% | 77,1% |
+| Random Forest | 77,8% | 77,8% | 77,8% | 77,8% |
+
+Random Forest memperoleh performa terbaik berdasarkan metrik evaluasi yang digunakan, dengan accuracy sebesar **77,8%**. Model ini juga menghasilkan nilai precision, recall, dan F1-score sebesar 77,8%.
+
+Hasil feature importance menunjukkan bahwa fitur seperti `tone`, `negemo`, `iword`, dan `clout` termasuk fitur yang memiliki kontribusi tinggi dalam prediksi. Temuan ini menunjukkan bahwa karakteristik emosional, pilihan kata, dan aspek sosial dapat memberikan informasi dalam proses klasifikasi.
+
+## Konteks Akademik
+
+Program Studi S1 Sains Data  
+Universitas Negeri Surabaya
+
+Mata Kuliah: Artificial Intelligence
+
+## Catatan
+
+Proyek ini merupakan analisis akademik berbasis dataset dan model machine learning. Hasil prediksi tidak dimaksudkan sebagai diagnosis atau pengganti evaluasi profesional terkait kesehatan mental.
